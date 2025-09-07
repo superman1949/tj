@@ -3,306 +3,344 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>技术教程视频库 - 专业学习平台</title>
+    <meta name="description" content="金算盘统计、极品统计软件、博赢统计、元统计软件、大财主统计等专业统计软件视频教程和下载">
+    <meta name="keywords" content="金算盘,金算盘统计,极品统计,极品统计软件,博赢统计,元统计,元统计软件,微统,大财主,大财主统计">
+    <title>专业统计软件教程与下载 - 金算盘/极品统计/博赢统计/元统计/大财主/微统</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <style>
-        /* 基础样式重置 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
         }
         
         body {
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            color: #f0f0f0;
-            line-height: 1.6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%);
+            color: #fff;
             min-height: 100vh;
             padding-bottom: 50px;
         }
         
-        /* 容器样式 */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* 头部样式 */
-        header {
+        .hero {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.4);
             text-align: center;
-            padding: 40px 0;
-            background: rgba(0, 0, 0, 0.3);
-            margin-bottom: 20px;
+            margin-bottom: 40px;
+            background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
             position: relative;
-            overflow: hidden;
         }
         
-        header::before {
-            content: "";
+        .hero::after {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon fill="rgba(255,255,255,0.05)" points="0,0 100,0 100,100"/></svg>');
-            background-size: 100% 100%;
-            z-index: -1;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 0;
         }
         
-        h1 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-            background: linear-gradient(90deg, #00c6ff, #0072ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        .hero-content {
+            position: relative;
+            z-index: 1;
         }
         
-        .subtitle {
-            font-size: 1.2rem;
-            color: #a0d2ff;
-            max-width: 700px;
-            margin: 0 auto;
+        .section-title {
+            position: relative;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
-        /* 视频网格布局 */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            padding: 20px;
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
         }
         
-        /* 视频卡片样式 */
         .video-card {
-            background: rgba(25, 40, 65, 0.7);
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
             overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 30px;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .video-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 120, 255, 0.4);
-            border-color: rgba(0, 198, 255, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
         
-        .video-thumbnail {
+        .video-cover {
             position: relative;
-            height: 180px;
+            height: 200px;
             overflow: hidden;
-            cursor: pointer;
         }
         
-        .video-thumbnail img {
+        .video-cover img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.5s;
         }
         
-        .video-card:hover .video-thumbnail img {
-            transform: scale(1.1);
+        .video-card:hover .video-cover img {
+            transform: scale(1.05);
         }
         
-        .play-icon {
+        .play-btn {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 60px;
             height: 60px;
-            background: rgba(0, 198, 255, 0.8);
+            background: var(--secondary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0.9;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
+            cursor: pointer;
         }
         
-        .play-icon i {
+        .play-btn:hover {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        
+        .play-btn i {
             color: white;
             font-size: 24px;
             margin-left: 5px;
         }
         
-        .video-card:hover .play-icon {
-            background: rgba(0, 150, 255, 1);
-            transform: translate(-50%, -50%) scale(1.1);
-        }
-        
-        .video-duration {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-        }
-        
-        .video-info {
+        .video-content {
             padding: 20px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
         }
         
         .video-title {
+            font-weight: 700;
+            margin-bottom: 10px;
             font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: #e0f7ff;
-            font-weight: 600;
         }
         
-        .video-description {
-            color: #a0c0d0;
-            font-size: 0.95rem;
-            margin-bottom: 15px;
-            flex: 1;
-        }
-        
-        /* 下载按钮样式 - 已优化为网盘下载 */
-        .download-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            text-align: center;
-            background: linear-gradient(90deg, #00c6ff, #0072ff);
+        .btn-download {
+            background: var(--accent);
             color: white;
-            padding: 12px;
-            border-radius: 8px;
-            text-decoration: none;
-            margin-top: 15px;
-            font-weight: 600;
-            transition: all 0.3s ease;
             border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 120, 255, 0.4);
-        }
-        
-        .download-btn:hover::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: rotate(30deg);
-            transition: all 0.6s ease;
-        }
-        
-        .download-btn i {
-            margin-right: 10px;
-            font-size: 18px;
-        }
-        
-        /* 技术支持区域样式 */
-        .support-section {
-            background: rgba(15, 30, 45, 0.7);
-            border-radius: 15px;
-            padding: 30px;
-            margin: 40px 20px;
-            text-align: center;
-            border: 1px solid rgba(0, 198, 255, 0.2);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            position: relative;
-        }
-        
-        .support-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #00c6ff, #0072ff);
-            border-radius: 5px 5px 0 0;
-        }
-        
-        .support-title {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: #e0f7ff;
-            background: linear-gradient(90deg, #00c6ff, #0072ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .wechat-contact {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-top: 20px;
-        }
-        
-        .wechat-info {
-            text-align: left;
-            max-width: 400px;
-        }
-        
-        .wechat-info h3 {
-            color: #00c6ff;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .wechat-info p {
-            margin-bottom: 10px;
-            color: #b0d0e0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .wechat-qr {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
-        }
-        
-        .wechat-qr:hover {
-            transform: scale(1.05);
-        }
-        
-        .wechat-qr img {
-            width: 180px;
-            height: 180px;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
             display: block;
-        }
-        
-        .wechat-qr p {
-            margin-top: 10px;
-            color: #333;
-            font-weight: bold;
+            width: 100%;
+            margin-top: 15px;
             text-align: center;
         }
         
-        /* 模态框样式 */
-        .modal {
+        .btn-download:hover {
+            background: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
+        
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .contact-icon i {
+            font-size: 24px;
+            color: white;
+        }
+        
+        .contact-details h4 {
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .contact-info span {
+            margin-right: 15px;
+        }
+        
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background: var(--secondary);
+        }
+        
+        .qr-code {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .qr-code img {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .consult-form {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+            color: white;
+        }
+        
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .btn-submit {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-submit:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%);
+            color: white;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .modal-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .modal-footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .btn-modal {
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 5px;
+        }
+        
+        .btn-modal-primary {
+            background: var(--secondary);
+            color: white;
+            border: none;
+        }
+        
+        .btn-modal-secondary {
+            background: var(--accent);
+            color: white;
+            border: none;
+        }
+        
+        .btn-modal-light {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+        }
+        
+        .btn-modal:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .video-player {
             display: none;
             position: fixed;
             top: 0;
@@ -310,427 +348,483 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
+            z-index: 1050;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
         }
         
-        .modal.active {
-            display: flex;
-            opacity: 1;
-        }
-        
-        .modal-content {
+        .video-container {
             width: 80%;
             max-width: 900px;
-            background: rgba(30, 40, 60, 0.95);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 100, 200, 0.5);
             position: relative;
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
         }
         
-        .modal.active .modal-content {
-            transform: scale(1);
-        }
-        
-        .close-btn {
+        .close-video {
             position: absolute;
-            top: 15px;
-            right: 20px;
+            top: -40px;
+            right: 0;
             color: white;
             font-size: 30px;
             cursor: pointer;
-            z-index: 10;
-            transition: all 0.3s ease;
         }
         
-        .close-btn:hover {
-            color: #ff6b6b;
-            transform: rotate(90deg);
-        }
-        
-        .video-player {
+        .video-container video {
             width: 100%;
-            height: 0;
-            padding-bottom: 56.25%; /* 16:9 比例 */
-            position: relative;
+            border-radius: 10px;
         }
         
-        .video-player video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-        }
-        
-        .video-details {
-            padding: 25px;
-        }
-        
-        .modal-title {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: #e0f7ff;
-        }
-        
-        .modal-description {
-            color: #b0d0e0;
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-        
-        /* 页脚样式 */
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            padding: 20px;
-            color: #6a9bbd;
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        /* 响应式设计 */
         @media (max-width: 768px) {
-            .video-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 20px;
+            .hero {
+                padding: 50px 0;
             }
             
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            .modal-content {
-                width: 95%;
-            }
-            
-            .wechat-contact {
+            .contact-method {
                 flex-direction: column;
-            }
-            
-            .wechat-info {
                 text-align: center;
             }
-        }
-        
-        @media (max-width: 480px) {
-            .video-grid {
-                grid-template-columns: 1fr;
+            
+            .contact-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
             }
             
-            h1 {
-                font-size: 1.8rem;
-            }
-            
-            .subtitle {
-                font-size: 1rem;
-            }
-            
-            .support-section {
-                padding: 20px 15px;
-            }
-            
-            .download-btn {
-                padding: 10px;
-                font-size: 0.9rem;
+            .video-container {
+                width: 95%;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 页面头部 -->
-    <header>
-        <div class="container">
-            <h1><i class="fas fa-graduation-cap"></i> 技术教程视频库</h1>
-            <p class="subtitle">精选编程、开发与设计教程，助您掌握最新技术</p>
+    <!-- 主对话框 -->
+    <div class="modal fade" id="mainModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">欢迎来到统计软件资源中心</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <p>请问您需要什么帮助？</p>
+                    <div class="d-flex flex-column mt-4">
+                        <button class="btn btn-modal btn-modal-primary mb-3" data-next="watchModal">
+                            <i class="fas fa-play-circle me-2"></i>观看教程视频
+                        </button>
+                        <button class="btn btn-modal btn-modal-secondary mb-3" data-next="downloadModal">
+                            <i class="fas fa-download me-2"></i>下载视频软件
+                        </button>
+                        <button class="btn btn-modal btn-modal-light" data-next="contact">
+                            <i class="fas fa-comments me-2"></i>添加客服微信
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </header>
+    </div>
+
+    <!-- 观看视频选择对话框 -->
+    <div class="modal fade" id="watchModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">选择要观看的教程</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <p>请选择您要观看的视频教程：</p>
+                    <div class="d-flex flex-column mt-4">
+                        <button class="btn btn-modal btn-modal-primary mb-3" data-video="1">
+                            第一款：金算盘统计视频电脑版
+                        </button>
+                        <button class="btn btn-modal btn-modal-primary mb-3" data-video="2">
+                            第二款：极品统计视频电脑版
+                        </button>
+                        <button class="btn btn-modal btn-modal-primary" data-video="3">
+                            第三款：元统计安卓手机版
+                        </button>
+                        <button class="btn btn-modal btn-modal-primary mb-3" data-video="4">
+                            第四款：大财主统计视频电脑版
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 下载软件选择对话框 -->
+    <div class="modal fade" id="downloadModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">选择要下载的软件</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <p>请选择您要下载的软件：</p>
+                    <div class="d-flex flex-column mt-4">
+                        <button class="btn btn-modal btn-modal-secondary mb-3" data-software="1">
+                            下载：第一款-金算盘统计软件
+                        </button>
+                        <button class="btn btn-modal btn-modal-secondary mb-3" data-software="2">
+                            下载：第二款-极品统计软件
+                        </button>
+                        <button class="btn btn-modal btn-modal-secondary" data-software="3">
+                            下载：第三款-元统计软件
+                        </button>
+                        <button class="btn btn-modal btn-modal-secondary" data-software="4">
+                            下载：第四款款-大财主统计软件
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 视频播放器 -->
+    <div class="video-player" id="videoPlayer">
+        <div class="video-container">
+            <span class="close-video" id="closeVideo">&times;</span>
+            <video controls id="mainVideoPlayer">
+                <source src="" type="video/mp4">
+                您的浏览器不支持HTML5视频。
+            </video>
+        </div>
+    </div>
+
+    <!-- 页面内容 -->
+    <div class="hero">
+        <div class="container hero-content">
+            <h1 class="display-4 fw-bold mb-3">专业统计软件教程中心</h1>
+            <p class="lead mb-4">金算盘统计 | 极品统计软件 | 博赢统计 | 元统计软件 | 大财主统计| 微统</p>
+            <div class="d-flex justify-content-center gap-3">
+                <button class="btn btn-primary btn-lg px-4 py-2" data-bs-toggle="modal" data-bs-target="#mainModal">
+                    <i class="fas fa-play-circle me-2"></i>开始使用
+                </button>
+                <a href="#consult" class="btn btn-outline-light btn-lg px-4 py-2">
+                    <i class="fas fa-laptop-code me-2"></i>软件定制
+                </a>
+            </div>
+        </div>
+    </div>
 
     <div class="container">
-        <!-- 视频网格 -->
-        <div class="video-grid">
-            <!-- 
-                视频卡片结构说明：
-                1. 视频封面：在.video-thumbnail的img标签中设置src属性
-                2. 视频链接：在视频数据对象中的src属性设置
-                3. 下载链接：在.download-btn的href属性中设置网盘下载链接
-            -->
-            
-            <!-- 视频卡片 1 - JavaScript教程 -->
-            <div class="video-card">
-                <div class="video-thumbnail" onclick="openVideo('video1')">
-                    <!-- 视频封面图片 -->
-                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="JavaScript高级教程">
-                    <div class="play-icon">
-                        <i class="fas fa-play"></i>
+        <!-- 视频教程部分 -->
+        <section class="mb-5">
+            <h2 class="section-title text-center">视频教程</h2>
+            <div class="row">
+                <!-- 视频1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="video-card">
+                        <div class="video-cover">
+                            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="金算盘统计教程封面">
+                            <div class="play-btn" data-video="1">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <h3 class="video-title">第一款：金算盘统计电脑版</h3>
+                            <p class="text-light">支持windows系统电脑。</p>
+                            <a href="#" class="btn-download" data-software="1">
+                                <i class="fas fa-download me-2"></i>下载金算盘软件
+                            </a>
+                        </div>
                     </div>
-                    <div class="video-duration">05:18</div>
                 </div>
-                <div class="video-info">
-                    <h3 class="video-title">第一款智能数字统计软件升级版</h3>
-                    <p class="video-description">支持windows系统电脑</p>
-                    <!-- 网盘下载链接 -->
-                    <a href="https://share.feijipan.com/s/ef0z6pZV" target="_blank" class="download-btn">
-                        <i class="fas fa-cloud-download-alt"></i> 网盘下载资源包
-                    </a>
+                
+                <!-- 视频2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="video-card">
+                        <div class="video-cover">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="极品统计教程封面">
+                            <div class="play-btn" data-video="2">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <h3 class="video-title">第二款：极品统计视频电脑版</h3>
+                            <p class="text-light">支持windows系统电脑。</p>
+                            <a href="#" class="btn-download" data-software="2">
+                                <i class="fas fa-download me-2"></i>下载极品统计软件
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 视频3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="video-card">
+                        <div class="video-cover">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="博赢统计教程封面">
+                            <div class="play-btn" data-video="3">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <h3 class="video-title">第二款：元统计手机版</h3>
+                            <p class="text-light">支持安卓和鸿蒙系统手机或平板。</p>
+                            <a href="#" class="btn-download" data-software="3">
+                                <i class="fas fa-download me-2"></i>下载博赢统计软件
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 视频4 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="video-card">
+                        <div class="video-cover">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="大财主统计教程封面">
+                            <div class="play-btn" data-video="3">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <h3 class="video-title">第四款：大财主统计电脑版</h3>
+                            <p class="text-light">支持Windows电脑版。</p>
+                            <a href="#" class="btn-download" data-software="3">
+                                <i class="fas fa-download me-2"></i>下载大财主统计软件
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <!-- 视频卡片 2 - React教程 -->
-            <div class="video-card">
-                <div class="video-thumbnail" onclick="openVideo('video2')">
-                    <!-- 视频封面图片 -->
-                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80" alt="React实战">
-                    <div class="play-icon">
-                        <i class="fas fa-play"></i>
-                    </div>
-                    <div class="video-duration">02:45</div>
-                </div>
-                <div class="video-info">
-                    <h3 class="video-title">第二款极品博赢统计软件电脑升级版</h3>
-                    <p class="video-description">支持windows系统电脑</p>
-                    <!-- 网盘下载链接 -->
-                    <a href="https://share.feijipan.com/s/F60maE3S" target="_blank" class="download-btn">
-                        <i class="fas fa-cloud-download-alt"></i> 网盘下载资源包
-                    </a>
-                </div>
-            </div>
-            
-            <!-- 视频卡片 3 - Python教程 -->
-            <div class="video-card">
-                <div class="video-thumbnail" onclick="openVideo('video3')">
-                    <!-- 视频封面图片 -->
-                    <img src="https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Python数据分析">
-                    <div class="play-icon">
-                        <i class="fas fa-play"></i>
-                    </div>
-                    <div class="video-duration">41:22</div>
-                </div>
-                <div class="video-info">
-                    <h3 class="video-title">第三款智能数字统计软件手机升级版</h3>
-                    <p class="video-description">支持安卓手机</p>
-                    <!-- 网盘下载链接 -->
-                    <a href="https://share.feijipan.com/s/E80hB4RT" target="_blank" class="download-btn">
-                        <i class="fas fa-cloud-download-alt"></i> 网盘下载资源包
-                    </a>
-                </div>
-            </div>
-            
-            <!-- 视频卡片 4 - Docker教程 -->
-            <div class="video-card">
-                <div class="video-thumbnail" onclick="openVideo('video4')">
-                    <!-- 视频封面图片 -->
-                    <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Docker容器">
-                    <div class="play-icon">
-                        <i class="fas fa-play"></i>
-                    </div>
-                    <div class="video-duration">36:15</div>
-                </div>
-                <div class="video-info">
-                    <h3 class="video-title">Docker容器化部署指南</h3>
-                    <p class="video-description">从基础到实践，学习Docker的核心概念、容器管理以及如何将应用容器化部署到生产环境。</p>
-                    <!-- 网盘下载链接 -->
-                    <a href="https://pan.baidu.com/s/1example_link4" target="_blank" class="download-btn">
-                        <i class="fas fa-cloud-download-alt"></i> 网盘下载资源包
-                    </a>
-                </div>
-            </div>
-            
-            <!-- 视频卡片 5 - UI设计教程 -->
-            <div class="video-card">
-                <div class="video-thumbnail" onclick="openVideo('video5')">
-                    <!-- 视频封面图片 -->
-                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="UI设计">
-                    <div class="play-icon">
-                        <i class="fas fa-play"></i>
-                    </div>
-                    <div class="video-duration">28:33</div>
-                </div>
-                <div class="video-info">
-                    <h3 class="video-title">现代UI/UX设计原则</h3>
-                    <p class="video-description">探索现代用户界面和用户体验设计的最佳实践，学习如何创建直观、美观且高效的用户界面。</p>
-                    <!-- 网盘下载链接 -->
-                    <a href="https://pan.baidu.com/s/1example_link5" target="_blank" class="download-btn">
-                        <i class="fas fa-cloud-download-alt"></i> 网盘下载资源包
-                    </a>
-                </div>
-            </div>
-            
-            <!-- 视频卡片 6 - Node.js教程 -->
-            <div class="video-card">
-                <div class="video-thumbnail" onclick="openVideo('video6')">
-                    <!-- 视频封面图片 -->
-                    <img src="https://images.unsplash.com/photo-1555066932-1a13415f085d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Node.js后端">
-                    <div class="play-icon">
-                        <i class="fas fa-play"></i>
-                    </div>
-                    <div class="video-duration">38:47</div>
-                </div>
-                <div class="video-info">
-                    <h3 class="video-title">Node.js后端开发实战</h3>
-                    <p class="video-description">使用Node.js和Express构建RESTful API，学习中间件、认证、数据库集成等后端开发核心技术。</p>
-                    <!-- 网盘下载链接 -->
-                    <a href="https://pan.baidu.com/s/1example_link6" target="_blank" class="download-btn">
-                        <i class="fas fa-cloud-download-alt"></i> 网盘下载资源包
-                    </a>
-                </div>
-            </div>
-        </div>
+        </section>
         
-        <!-- 技术支持区域 -->
-        <div class="support-section">
-            <h2 class="support-title">技术支持与联系</h2>
-            <p>如果您在学习过程中遇到任何问题，欢迎随时联系我们的技术人员</p>
-            
-            <div class="wechat-contact">
-                <div class="wechat-info">
-                    <h3><i class="fab fa-qq"></i> 远程技术QQ：9372902</h3>
+        <!-- 联系方式部分 -->
+        <section class="mb-5" id="contact">
+            <h2 class="section-title text-center">联系我们</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="contact-card">
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fab fa-weixin"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>技术微信</h4>
+                                <div class="contact-info">
+                                    <span id="wechatAccount">xbys1949</span>
+                                    <button class="copy-btn" data-clipboard-target="#xbys1949">复制</button>
+                                </div>
+                                <div class="qr-code">
+                                    <img src="/tp/weixin.png" alt="微信二维码">
+                                    <p class="mt-2 mb-0">扫码添加微信</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fab fa-qq"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>技术QQ</h4>
+                                <div class="contact-info">
+                                    <span id="qqAccount">251750007</span>
+                                    <button class="copy-btn" data-clipboard-target="#251750007">复制</button>
+                                </div>
+                                <div class="qr-code">
+                                    <img src="/tp/qq.png" alt="QQ二维码">
+                                    <p class="mt-2 mb-0">扫码添加QQ</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 软件定制咨询表单 -->
+                <div class="col-md-6" id="consult">
+                    <div class="consult-form">
+                        <h3 class="mb-4 text-center">软件定制开发咨询</h3>
+                        <form id="consultForm">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="name" placeholder="您的姓名" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="tel" class="form-control" id="phone" placeholder="联系电话" required>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" id="project" rows="4" placeholder="请描述您的定制开发需求..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-submit">
+                                <i class="fas fa-paper-plane me-2"></i>提交咨询
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
     </div>
-    
-    <!-- 视频模态框 -->
-    <div class="modal" id="videoModal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeVideo()">&times;</span>
-            <div class="video-player">
-                <video id="videoPlayer" controls>
-                    <!-- 
-                        视频链接位置：
-                        在视频数据对象的src属性中设置实际视频链接
-                        例如: src: "https://yourserver.com/videos/javascript-tutorial.mp4"
-                    -->
-                    <source src="" type="video/mp4">
-                    您的浏览器不支持HTML5视频。
-                </video>
-            </div>
-            <div class="video-details">
-                <h2 class="modal-title" id="modalTitle">视频标题</h2>
-                <p class="modal-description" id="modalDescription">视频描述内容将在这里显示。</p>
-            </div>
-        </div>
-    </div>
-    
-    <!-- 页脚 -->
-    <footer>
+
+    <footer class="footer">
         <div class="container">
-            <p>© 2023 技术教程视频库 | 所有视频教程仅供学习参考 </p>
+            <p>&copy; 2023 专业统计软件资源中心. 保留所有权利.</p>
+            <p class="mb-0">金算盘统计 | 极品统计软件 | 博赢统计 | 元统计软件 | 大财主统计| 微统</p>
         </div>
     </footer>
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script>
     <script>
-        // 视频数据对象 - 存储所有视频的详细信息
-        const videos = {
-            video1: {
-                title: "第一款智能统计软件电脑版本",
-                description: "支持windows系统电脑",
-                duration: "05:18",
-                /* 
-                  视频链接位置：
-                  请在此处设置实际的视频URL
-                */
-                src: "https://ht.mc921.cn/xbtj.mp4"
-            },
-            video2: {
-                title: "第二款极品博赢统计软件电脑版",
-                description: "支持windows系统电脑",
-                duration: "03:45",
-                /* 
-                  视频链接位置：
-                  请在此处设置实际的视频URL
-                */
-                src: "https://ht.mc921.cn/jptj.mp4"
-            },
-            video3: {
-                title: "第三款统计软件安卓手机版",
-                description: "仅支持安卓手机",
-                duration: "03:22",
-                /* 
-                  视频链接位置：
-                  请在此处设置实际的视频URL
-                */
-                src: "https://ht.mc921.cn/sjtj.mp4"
-            },
-            video4: {
-                title: "Docker容器化部署指南",
-                description: "本视频将全面介绍Docker容器技术。从基本概念到实际应用，您将学习如何创建Docker镜像、管理容器、使用Docker Compose编排多容器应用，以及如何将应用部署到生产环境。无论您是开发人员还是运维工程师，这些技能都至关重要。",
-                duration: "36:15",
-                /* 
-                  视频链接位置：
-                  请在此处设置实际的视频URL
-                */
-                src: "https://yourserver.com/videos/docker-tutorial.mp4"
-            },
-            video5: {
-                title: "现代UI/UX设计原则",
-                description: "探索现代用户界面和用户体验设计的最佳实践。本教程将涵盖设计思维、用户研究、信息架构、交互设计和视觉设计等核心概念。您将学习如何创建直观、美观且高效的用户界面，提升产品的整体用户体验。",
-                duration: "28:33",
-                /* 
-                  视频链接位置：
-                  请在此处设置实际的视频URL
-                */
-                src: "https://yourserver.com/videos/ui-design-tutorial.mp4"
-            },
-            video6: {
-                title: "Node.js后端开发实战",
-                description: "在这个视频中，我们将使用Node.js和Express框架构建一个完整的RESTful API。您将学习中间件的使用、认证和授权机制、数据库集成（MongoDB）、错误处理以及API测试。通过这个项目，您将掌握后端开发的核心技能。",
-                duration: "38:47",
-                /* 
-                  视频链接位置：
-                  请在此处设置实际的视频URL
-                */
-                src: "https://yourserver.com/videos/nodejs-tutorial.mp4"
-            }
-        };
+        // 初始化EmailJS
+        (function() {
+            emailjs.init("uQ59WHxVkvNKHltc4");
+        })();
         
-        // 打开视频模态框
-        function openVideo(videoId) {
-            const video = videos[videoId];
-            if (video) {
-                // 更新模态框内容
-                document.getElementById('modalTitle').textContent = video.title;
-                document.getElementById('modalDescription').textContent = video.description;
-                
-                // 设置视频源
-                const videoPlayer = document.getElementById('videoPlayer');
-                videoPlayer.src = video.src;
-                
-                // 显示模态框
-                const modal = document.getElementById('videoModal');
-                modal.classList.add('active');
-                
-                // 开始播放视频
-                setTimeout(() => {
-                    videoPlayer.play();
-                }, 300);
-            }
-        }
-        
-        // 关闭视频模态框
-        function closeVideo() {
-            const modal = document.getElementById('videoModal');
-            modal.classList.remove('active');
+        // 页面加载完成后显示主对话框
+        document.addEventListener('DOMContentLoaded', function() {
+            var mainModal = new bootstrap.Modal(document.getElementById('mainModal'));
+            mainModal.show();
             
-            // 暂停并重置视频
+            // 初始化复制功能
+            new ClipboardJS('.copy-btn');
+            
+            // 复制成功提示
+            document.querySelectorAll('.copy-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const originalText = this.textContent;
+                    this.innerHTML = '<i class="fas fa-check me-1"></i>已复制';
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                    }, 2000);
+                });
+            });
+        });
+        
+        // 主对话框按钮事件处理
+        document.querySelectorAll('#mainModal .btn-modal').forEach(button => {
+            button.addEventListener('click', function() {
+                const nextModal = this.getAttribute('data-next');
+                const mainModal = bootstrap.Modal.getInstance(document.getElementById('mainModal'));
+                
+                if(nextModal === 'contact') {
+                    mainModal.hide();
+                    // 滚动到联系方式部分
+                    setTimeout(() => {
+                        document.getElementById('contact').scrollIntoView({behavior: 'smooth'});
+                    }, 300);
+                } else {
+                    mainModal.hide();
+                    setTimeout(() => {
+                        const modal = new bootstrap.Modal(document.getElementById(nextModal));
+                        modal.show();
+                    }, 300);
+                }
+            });
+        });
+        
+        // 观看视频选择处理
+        document.querySelectorAll('[data-video]').forEach(button => {
+            button.addEventListener('click', function() {
+                const videoId = this.getAttribute('data-video');
+                playVideo(videoId);
+                
+                // 关闭模态框
+                const modalId = this.closest('.modal').id;
+                const modal = bootstrap.Modal.getInstance(document.getElementById(modalId));
+                modal.hide();
+            });
+        });
+        
+        // 下载软件选择处理
+        document.querySelectorAll('[data-software]').forEach(button => {
+            button.addEventListener('click', function() {
+                const softwareId = this.getAttribute('data-software');
+                downloadSoftware(softwareId);
+                
+                // 关闭模态框
+                const modalId = this.closest('.modal').id;
+                const modal = bootstrap.Modal.getInstance(document.getElementById(modalId));
+                modal.hide();
+            });
+        });
+        
+        // 播放视频函数
+        function playVideo(videoId) {
             const videoPlayer = document.getElementById('videoPlayer');
-            videoPlayer.pause();
-            videoPlayer.currentTime = 0;
+            const videoElement = document.getElementById('mainVideoPlayer');
+            
+            // 根据videoId设置视频源 - 这里使用示例视频，实际使用时替换为您的视频URL
+            let videoUrl = '';
+            switch(videoId) {
+                case '1':
+                    videoUrl = 'http://t2494h459.hn-bkt.clouddn.com/%E9%87%91%E7%AE%97%E7%9B%98%E7%BB%9F%E8%AE%A1.mp4';
+                    break;
+                case '2':
+                    videoUrl = 'http://t2494h459.hn-bkt.clouddn.com/%E6%9E%81%E5%93%81%E7%BB%9F%E8%AE%A1.mp4';
+                    break;
+                case '3':
+                    videoUrl = 'http://t2494h459.hn-bkt.clouddn.com/%E6%89%8B%E6%9C%BA%E5%85%83%E7%BB%9F%E8%AE%A1.mp4';
+                    break;
+                case '4':
+                    videoUrl = 'http://t2494h459.hn-bkt.clouddn.com/%E5%A4%A7%E8%B4%A2%E4%B8%BB1.mp4';
+                    break;
+            }
+            
+            videoElement.src = videoUrl;
+            videoPlayer.style.display = 'flex';
+            
+            // 开始播放
+            setTimeout(() => {
+                videoElement.play();
+            }, 300);
         }
         
-        // 点击模态框外部关闭
-        window.onclick = function(event) {
-            const modal = document.getElementById('videoModal');
-            if (event.target === modal) {
-                closeVideo();
+        // 关闭视频播放器
+        document.getElementById('closeVideo').addEventListener('click', function() {
+            const videoPlayer = document.getElementById('videoPlayer');
+            const videoElement = document.getElementById('mainVideoPlayer');
+            
+            videoElement.pause();
+            videoPlayer.style.display = 'none';
+        });
+        
+        // 下载软件函数
+        function downloadSoftware(softwareId) {
+            let downloadUrl = '';
+            
+            // 根据softwareId设置下载链接 - 实际使用时替换为您的百度网盘链接
+            switch(softwareId) {
+                case '1':
+                    downloadUrl = 'http://1.12.243.222:8888/down/2pY8nPiXjK85.rar';
+                    break;
+                case '2':
+                    downloadUrl = 'http://1.12.243.222:8888/down/F1mJrqsIfkVx.rar';
+                    break;
+                case '3':
+                    downloadUrl = 'http://1.12.243.222:8888/down/zGJrMugkGSXw.apk';
+                    break;
+                case '4':
+                    downloadUrl = 'http://1.12.243.222:8888/down/g43gadZqF7WE.rar';
+                    break;
             }
+            
+            // 在新标签页打开下载链接
+            window.open(downloadUrl, '_blank');
         }
+        
+        // 表单提交处理
+        document.getElementById('consultForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const project = document.getElementById('project').value;
+            
+            // 发送邮件
+            emailjs.send("service_wlfjl2q", "template_re4o98a", {
+                name: name,
+                phone: phone,
+                project: project
+            })
+            .then(function(response) {
+                alert('咨询提交成功！我们将尽快联系您。');
+                document.getElementById('consultForm').reset();
+            }, function(error) {
+                alert('提交失败，请稍后再试。错误: ' + error.text);
+            });
+        });
     </script>
 </body>
 </html>
